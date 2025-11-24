@@ -168,7 +168,7 @@ const setSlide = (index) => {
 
 const resetTimer = () => {
   clearInterval(timer);
-  timer = setInterval(nextSlide, 15000);
+  timer = setInterval(nextSlide, 5000);
 };
 
 const handleMainAction = () => {
@@ -182,7 +182,7 @@ const handleMainAction = () => {
 };
 
 onMounted(() => {
-  timer = setInterval(nextSlide, 15000);
+  timer = setInterval(nextSlide, 5000);
 });
 
 onUnmounted(() => {

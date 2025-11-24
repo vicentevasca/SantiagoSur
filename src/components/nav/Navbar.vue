@@ -1,7 +1,9 @@
 <template>
   <nav 
   class="fixed top-0 left-0 w-full z-50 transition-all duration-300"
-  :class="isScrolled ? 'bg-black py-4 shadow-2xl shadow-black' : 'bg-transparent py-8 mix-blend-difference'"
+  :class="isScrolled 
+    ? 'bg-black/95 backdrop-blur-md py-4 border-b border-neutral-900 shadow-xl' 
+    : 'bg-black/95 backdrop-blur-md py-4 border-b border-neutral-900 shadow-xl lg:bg-transparent lg:backdrop-blur-none lg:py-8 lg:border-transparent lg:shadow-none'"
 >
     <div class="max-w-[1920px] mx-auto px-6 flex justify-between items-center relative">
       
@@ -57,17 +59,40 @@
     </div>
 
     <Transition name="fade">
-      <div v-if="isMenuOpen" class="fixed inset-0 bg-black z-40 flex flex-col items-center justify-center space-y-8 text-white">
-        <a @click="scrollToSection('servicios')" class="text-2xl font-light uppercase tracking-widest cursor-pointer">Servicios</a>
-        <a @click="scrollToSection('eventos')" class="text-2xl font-light uppercase tracking-widest cursor-pointer">Agenda</a>
-        <a @click="scrollToSection('estudio')" class="text-2xl font-light uppercase tracking-widest cursor-pointer">Estudio</a>
+      <div v-if="isMenuOpen" class="fixed inset-0 bg-black z-[100] flex flex-col items-center justify-between py-12 px-6 h-screen w-full overflow-hidden">
         
+        <div class="relative mt-8 flex items-center justify-center">
+          <div class="w-40 h-40 rounded-full shadow-2xl animate-spin-slow vinyl-record relative flex items-center justify-center border border-neutral-800">
+             <div class="absolute inset-0 rounded-full vinyl-sheen"></div>
+             <div class="w-12 h-12 bg-black rounded-full border border-yellow-500/20"></div>
+          </div>
+          
+          <div class="absolute z-10 font-serif text-5xl font-bold text-white tracking-tighter drop-shadow-md select-none">
+            SS
+          </div>
+        </div>
+
+        <div class="flex flex-col items-center space-y-8">
+          <a @click="scrollToSection('servicios')" class="text-3xl font-light uppercase tracking-[0.2em] text-white hover:text-yellow-400 transition-colors cursor-pointer">Servicios</a>
+          <a @click="scrollToSection('eventos')" class="text-3xl font-light uppercase tracking-[0.2em] text-white hover:text-yellow-400 transition-colors cursor-pointer">Agenda</a>
+          <a @click="scrollToSection('estudio')" class="text-3xl font-light uppercase tracking-[0.2em] text-white hover:text-yellow-400 transition-colors cursor-pointer">Estudio</a>
+          
+          <button 
+            @click="$emit('openMatchDetails'); toggleMenu()"
+            class="mt-4 px-8 py-3 border border-yellow-500/50 text-yellow-400 font-bold text-xs uppercase tracking-widest rounded-full hover:bg-yellow-500 hover:text-black transition-all"
+          >
+            The Match 2026
+          </button>
+        </div>
+
         <button 
-          @click="$emit('openMatchDetails'); toggleMenu()"
-          class="mt-8 px-10 py-4 bg-gradient-to-r from-yellow-600 to-yellow-500 text-black font-bold uppercase tracking-widest rounded-full"
+          @click="toggleMenu" 
+          class="mb-8 flex flex-col items-center gap-2 group text-neutral-500 hover:text-white transition-colors"
         >
-          The Match 2026
+          <span class="text-3xl font-light group-hover:rotate-90 transition-transform duration-300">×</span>
+          <span class="text-[10px] font-bold uppercase tracking-widest">Cerrar Menú</span>
         </button>
+
       </div>
     </Transition>
     
@@ -109,42 +134,6 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
-/* ANIMACIÓN DE CASCADA PIROTÉCNICA (SPARKS) */
-
-/* La "chispa" base */
-.spark {
-  position: absolute;
-  top: 0; 
-  width: 2px;
-  height: 8px;
-  background-color: white;
-  border-radius: 4px;
-  opacity: 0; 
-  transform: translateY(-10px);
-}
-
-/* Activación en Hover */
-.group:hover .spark {
-  animation: fireworkRain linear infinite;
-}
-
-/* Animación de caída */
-@keyframes fireworkRain {
-  0% {
-    transform: translateY(0) scaleY(1);
-    opacity: 1;
-    background-color: #ffffff;
-  }
-  40% {
-    background-color: #FACC15;
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(50px) scaleY(0.5);
-    background-color: #A855F7;
-    opacity: 0;
-  }
-}
 
 /* Posiciones Aleatorias */
 .s1 { left: 10%; animation-duration: 0.6s; animation-delay: 0.1s; }

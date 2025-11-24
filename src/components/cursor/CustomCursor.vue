@@ -1,7 +1,10 @@
 <template>
   <div 
-    class="fixed top-0 left-0 pointer-events-none z-[9999] transition-transform duration-100 ease-out flex items-center justify-center will-change-transform"
-    :class="{ 'mix-blend-difference': !isMatchHover }" 
+    class="custom-cursor fixed top-0 left-0 pointer-events-none z-[9999] transition-transform duration-100 ease-out flex items-center justify-center will-change-transform"
+    :class="[
+      { 'mix-blend-difference': !isMatchHover },
+      isHidden ? 'opacity-0' : 'opacity-100'
+    ]"
     :style="{ 
       transform: `translate3d(${x}px, ${y}px, 0) translate(-50%, -50%)`
     }"
@@ -26,10 +29,14 @@ import { ref, onMounted, onUnmounted } from 'vue';
 
 const x = ref(-100);
 const y = ref(-100);
-const isHovering = ref(false); // Hover genérico
-const isMatchHover = ref(false); // Hover específico de The Match
+const isHovering = ref(false);
+const isMatchHover = ref(false);
+const isHidden = ref(true); // Por defecto oculto hasta que se mueva el mouse
 
 const updateCursor = (e) => {
+  // Solo mostramos el cursor una vez que el usuario mueve el mouse
+  if (isHidden.value) isHidden.value = false;
+
   x.value = e.clientX;
   y.value = e.clientY;
   
@@ -44,19 +51,54 @@ const updateCursor = (e) => {
     target.classList.contains('cursor-pointer')
   );
 
-  // Detección Específica "The Match" (Busca la clase match-trigger)
+  // Detección The Match
   isMatchHover.value = target.closest('.match-trigger') !== null;
 };
 
+// Detección de salida de ventana (para ocultar cursor si sale del navegador)
+const handleMouseLeave = () => {
+  isHidden.value = true;
+};
+
+const handleMouseEnter = () => {
+  isHidden.value = false;
+};
+
 onMounted(() => {
-  window.addEventListener('mousemove', updateCursor);
+  // CRUCIAL: Detectamos si el dispositivo soporta hover real (mouse)
+  // Si es táctil puro, matchMedia será falso y no agregamos los listeners
+  const isDesktop = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+
+  if (isDesktop) {
+    window.addEventListener('mousemove', updateCursor);
+    document.addEventListener('mouseleave', handleMouseLeave);
+    document.addEventListener('mouseenter', handleMouseEnter);
+  } else {
+    // Aseguramos que se quede oculto en móviles
+    isHidden.value = true;
+  }
 });
+
 onUnmounted(() => {
   window.removeEventListener('mousemove', updateCursor);
+  document.removeEventListener('mouseleave', handleMouseLeave);
+  document.removeEventListener('mouseenter', handleMouseEnter);
 });
 </script>
 
 <style scoped>
+/* Regla Maestra: Ocultar por defecto en todos lados */
+.custom-cursor {
+  display: none; 
+}
+
+/* Regla de Excepción: Solo mostrar en dispositivos con puntero fino (Mouse/Trackpad) */
+@media (hover: hover) and (pointer: fine) {
+  .custom-cursor {
+    display: flex;
+  }
+}
+
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
@@ -69,9 +111,5 @@ onUnmounted(() => {
 @keyframes pulse {
   0%, 100% { opacity: 1; transform: scale(1.25); }
   50% { opacity: .5; transform: scale(1.1); }
-}
-
-@media (hover: none) {
-  div { display: none !important; }
 }
 </style>
