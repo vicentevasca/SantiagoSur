@@ -1,6 +1,7 @@
 import { createApp } from 'vue'
 import './style.css'
 import App from './App.vue'
+import router from './router'
 
 // 1. Importar librería de partículas (Solo una vez)
 import Particles from "@tsparticles/vue3";
@@ -21,5 +22,7 @@ app.use(Particles, {
         await loadSlim(engine);
     },
 });
+
+app.use(router);
 
 app.mount('#app');

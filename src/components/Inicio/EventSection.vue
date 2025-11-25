@@ -155,6 +155,17 @@ const events = ref([
     image: 'https://images.unsplash.com/photo-1493225255756-d9584f8606e9?q=80&w=1000',
     soldOut: false
   },
+  { 
+    id: 4, 
+    day: '15', 
+    month: 'NOV', 
+    year: '2025',
+    title: 'Neon Nights', 
+    location: 'Club Hípico', 
+    time: '00:00 HRS',
+    image: 'https://images.unsplash.com/photo-1493225255756-d9584f8606e9?q=80&w=1000',
+    soldOut: false
+  },
 ]);
 
 // LÓGICA DE APERTURA

@@ -1,10 +1,10 @@
 <template>
   <nav 
-  class="fixed top-0 left-0 w-full z-50 transition-all duration-300"
-  :class="isScrolled 
-    ? 'bg-black/95 backdrop-blur-md py-4 border-b border-neutral-900 shadow-xl' 
-    : 'bg-black/95 backdrop-blur-md py-4 border-b border-neutral-900 shadow-xl lg:bg-transparent lg:backdrop-blur-none lg:py-8 lg:border-transparent lg:shadow-none'"
->
+    class="fixed top-0 left-0 w-full z-50 transition-all duration-300"
+    :class="isScrolled 
+      ? 'bg-black/95 backdrop-blur-md py-4 border-b border-neutral-900 shadow-xl' 
+      : 'bg-black/95 backdrop-blur-md py-4 border-b border-neutral-900 shadow-xl lg:bg-transparent lg:backdrop-blur-none lg:py-8 lg:border-transparent lg:shadow-none'"
+  >
     <div class="max-w-[1920px] mx-auto px-6 flex justify-between items-center relative">
       
       <div 
@@ -28,16 +28,8 @@
           </span>
           
           <div class="absolute inset-0 z-10 pointer-events-none w-full h-full">
-            <i class="spark s1"></i>
-            <i class="spark s2"></i>
-            <i class="spark s3"></i>
-            <i class="spark s4"></i>
-            <i class="spark s5"></i>
-            <i class="spark s6"></i>
-            <i class="spark s7"></i>
-            <i class="spark s8"></i>
-            <i class="spark s9"></i>
-            <i class="spark s10"></i>
+            <i class="spark s1"></i><i class="spark s2"></i><i class="spark s3"></i><i class="spark s4"></i><i class="spark s5"></i>
+            <i class="spark s6"></i><i class="spark s7"></i><i class="spark s8"></i><i class="spark s9"></i><i class="spark s10"></i>
           </div>
           
           <div class="absolute top-0 left-0 w-full h-[1px] bg-white shadow-[0_0_15px_white] opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20"></div>
@@ -48,12 +40,13 @@
         <ul class="flex gap-12 text-xs font-bold tracking-widest uppercase text-white">
           <li @click="scrollToSection('servicios')" class="cursor-pointer hover:text-neutral-400 transition-colors">Servicios</li>
           <li @click="scrollToSection('eventos')" class="cursor-pointer hover:text-neutral-400 transition-colors">Agenda</li>
+          <li @click="scrollToSection('artistas')" class="cursor-pointer hover:text-neutral-400 transition-colors">Residentes</li>
           <li @click="scrollToSection('estudio')" class="cursor-pointer hover:text-neutral-400 transition-colors">Estudio</li>
         </ul>
       </div>
 
-      <button @click="toggleMenu" class="md:hidden uppercase text-xs font-bold tracking-widest text-white z-20">
-        {{ isMenuOpen ? 'Cerrar' : 'Menu' }}
+      <button @click="toggleMenu" class="md:hidden uppercase text-xs font-bold tracking-widest text-white z-20 hover:text-yellow-400 transition-colors">
+        {{ isMenuOpen ? '' : 'Menu' }}
       </button>
 
     </div>
@@ -66,16 +59,16 @@
              <div class="absolute inset-0 rounded-full vinyl-sheen"></div>
              <div class="w-12 h-12 bg-black rounded-full border border-yellow-500/20"></div>
           </div>
-          
-          <div class="absolute z-10 font-serif text-5xl font-bold text-white tracking-tighter drop-shadow-md select-none">
-            SS
+          <div class="absolute z-10 font-extrabold text-6xl text-yellow-500 tracking-tighter drop-shadow-md select-none">
+            <span class="text-black [-webkit-text-stroke:1px_white] md:[-webkit-text-stroke:1px_white]">SS</span>
           </div>
         </div>
 
-        <div class="flex flex-col items-center space-y-8">
-          <a @click="scrollToSection('servicios')" class="text-3xl font-light uppercase tracking-[0.2em] text-white hover:text-yellow-400 transition-colors cursor-pointer">Servicios</a>
-          <a @click="scrollToSection('eventos')" class="text-3xl font-light uppercase tracking-[0.2em] text-white hover:text-yellow-400 transition-colors cursor-pointer">Agenda</a>
-          <a @click="scrollToSection('estudio')" class="text-3xl font-light uppercase tracking-[0.2em] text-white hover:text-yellow-400 transition-colors cursor-pointer">Estudio</a>
+        <div class="flex flex-col items-center space-y-6">
+          <a @click="scrollToSection('servicios')" class="text-2xl font-light uppercase tracking-[0.2em] text-white hover:text-yellow-400 transition-colors cursor-pointer">Servicios</a>
+          <a @click="scrollToSection('eventos')" class="text-2xl font-light uppercase tracking-[0.2em] text-white hover:text-yellow-400 transition-colors cursor-pointer">Agenda</a>
+          <a @click="scrollToSection('artistas')" class="text-2xl font-light uppercase tracking-[0.2em] text-white hover:text-yellow-400 transition-colors cursor-pointer">Artistas</a>
+          <a @click="scrollToSection('estudio')" class="text-2xl font-light uppercase tracking-[0.2em] text-white hover:text-yellow-400 transition-colors cursor-pointer">Estudio</a>
           
           <button 
             @click="$emit('openMatchDetails'); toggleMenu()"
@@ -101,7 +94,10 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue';
+import { useRouter, useRoute } from 'vue-router'; // 1. Importamos el Router
 
+const router = useRouter();
+const route = useRoute();
 const emit = defineEmits(['openMatchDetails']);
 
 const isMenuOpen = ref(false);
@@ -109,14 +105,37 @@ const isScrolled = ref(false);
 
 const toggleMenu = () => {
   isMenuOpen.value = !isMenuOpen.value;
+  if(isMenuOpen.value) {
+    document.body.style.overflow = 'hidden';
+  } else {
+    document.body.style.overflow = '';
+  }
 };
 
-// Función de Scroll Suave
-const scrollToSection = (id) => {
-  isMenuOpen.value = false; 
-  const element = document.getElementById(id);
-  if (element) {
-    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+// --- FUNCIÓN UNIFICADA DE NAVEGACIÓN ---
+const scrollToSection = async (id) => {
+  // 1. Cerrar menú móvil si está abierto
+  if(isMenuOpen.value) toggleMenu(); 
+
+  // 2. Caso especial: Ir a la página de artistas
+  if (id === 'artistas') {
+    await router.push('/artistas');
+    return;
+  }
+
+  // 3. Caso normal (Home y secciones)
+  if (route.path !== '/') {
+    // Si no estamos en home, vamos al home primero
+    await router.push('/');
+    // Esperamos un poco para que cargue el componente Home
+    setTimeout(() => {
+      const element = document.getElementById(id);
+      if (element) element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 500);
+  } else {
+    // Si ya estamos en home, solo hacemos scroll
+    const element = document.getElementById(id);
+    if (element) element.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 };
 
@@ -134,8 +153,27 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
+/* VINILO & ANIMACIONES */
+.vinyl-record {
+  background: repeating-radial-gradient(#1a1a1a 0, #1a1a1a 2px, #000 3px, #000 4px);
+}
+.vinyl-sheen {
+  background: linear-gradient(135deg, transparent 40%, rgba(255,255,255,0.1) 50%, transparent 60%);
+  pointer-events: none;
+}
+.animate-spin-slow { animation: spin 8s linear infinite; }
+@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
-/* Posiciones Aleatorias */
+/* CHISPAS */
+.spark { position: absolute; top: 0; width: 2px; height: 8px; background-color: white; border-radius: 4px; opacity: 0; transform: translateY(-10px); }
+.group:hover .spark { animation: fireworkRain linear infinite; }
+@keyframes fireworkRain {
+  0% { transform: translateY(0) scaleY(1); opacity: 1; background-color: #ffffff; }
+  40% { background-color: #FACC15; opacity: 1; }
+  100% { transform: translateY(50px) scaleY(0.5); background-color: #A855F7; opacity: 0; }
+}
+
+/* POSICIONES ALEATORIAS */
 .s1 { left: 10%; animation-duration: 0.6s; animation-delay: 0.1s; }
 .s2 { left: 20%; animation-duration: 0.9s; animation-delay: 0.3s; }
 .s3 { left: 35%; animation-duration: 0.7s; animation-delay: 0.5s; }
@@ -147,11 +185,7 @@ onUnmounted(() => {
 .s9 { left: 90%; animation-duration: 0.9s; animation-delay: 0.1s; }
 .s10 { left: 40%; animation-duration: 1.3s; animation-delay: 0.0s; }
 
-/* Transiciones Vue */
-.fade-enter-active, .fade-leave-active {
-  transition: opacity 0.3s ease;
-}
-.fade-enter-from, .fade-leave-to {
-  opacity: 0;
-}
+/* TRANSICIONES */
+.fade-enter-active, .fade-leave-active { transition: opacity 0.4s ease; }
+.fade-enter-from, .fade-leave-to { opacity: 0; }
 </style>
