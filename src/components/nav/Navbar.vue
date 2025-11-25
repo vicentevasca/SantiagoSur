@@ -67,7 +67,7 @@
         <div class="flex flex-col items-center space-y-6">
           <a @click="scrollToSection('servicios')" class="text-2xl font-light uppercase tracking-[0.2em] text-white hover:text-yellow-400 transition-colors cursor-pointer">Servicios</a>
           <a @click="scrollToSection('eventos')" class="text-2xl font-light uppercase tracking-[0.2em] text-white hover:text-yellow-400 transition-colors cursor-pointer">Agenda</a>
-          <a @click="scrollToSection('artistas')" class="text-2xl font-light uppercase tracking-[0.2em] text-white hover:text-yellow-400 transition-colors cursor-pointer">Artistas</a>
+          <a @click="scrollToSection('artistas')" class="text-2xl font-light uppercase tracking-[0.2em] text-white hover:text-yellow-400 transition-colors cursor-pointer">Residentes</a>
           <a @click="scrollToSection('estudio')" class="text-2xl font-light uppercase tracking-[0.2em] text-white hover:text-yellow-400 transition-colors cursor-pointer">Estudio</a>
           
           <button 
