@@ -1,5 +1,5 @@
 <template>
-  <section class="relative py-32 bg-black text-white px-6 md:px-12 overflow-hidden">
+  <section class="relative py-32 bg-black text-white px-6 md:px-12 overflow-hidden" id="eventos">
     
     <div class="max-w-[1800px] mx-auto mb-20 flex flex-col md:flex-row items-end justify-between reveal">
       <div>
@@ -60,7 +60,7 @@
               @click="openTicket(event)" 
               class="relative px-8 py-4 bg-white text-black font-extrabold text-xs tracking-widest uppercase overflow-hidden hover:bg-yellow-400 transition-colors duration-300"
             >
-              <span class="relative z-10">Comprar Ticket</span>
+              <span class="relative z-10">Consigue tu ticket</span>
             </button>
 
             <span v-else class="text-neutral-600 font-serif italic text-xl">
@@ -74,6 +74,7 @@
     </div>
 
     <Teleport to="body">
+      
       <Transition name="fade">
         <TicketModal 
           v-if="selectedEvent" 
@@ -81,6 +82,21 @@
           @close="selectedEvent = null" 
         />
       </Transition>
+
+      <Transition name="fade">
+        <TheMatchDetail 
+          v-if="showMatchDetail" 
+          @close="showMatchDetail = false" 
+        />
+      </Transition>
+
+      <Transition name="fade">
+        <TechnoSunsetDetail 
+          v-if="showTechnoDetail" 
+          @close="showTechnoDetail = false" 
+        />
+      </Transition>
+
     </Teleport>
 
   </section>
@@ -88,32 +104,45 @@
 
 <script setup>
 import { ref } from 'vue';
+
+// IMPORTAR COMPONENTES
 import TicketModal from '../ui/TicketModal.vue';
+import TheMatchDetail from '../events/TheMatchDetail.vue';
+import TechnoSunsetDetail from '../events/TechnoSunsetDetail.vue';
 
-const selectedEvent = ref(null);
+// IMPORTAR IMÁGENES
+import TheMatchBackground from '../../assets/img/TheMatch/TheMatchBackground.png';
+import TechnoSunsetBackground from '../../assets/img/TechnoSunset/TechnoSunsetBackground.png';
 
+// ESTADOS DE VISIBILIDAD
+const selectedEvent = ref(null); // Para modal genérico
+const showMatchDetail = ref(false);
+const showTechnoDetail = ref(false);
+
+// DATOS
 const events = ref([
   { 
     id: 1, 
-    day: '12', 
-    month: 'OCT', 
+    day: '31', 
+    month: 'Diciembre', 
     year: '2025',
-    title: 'Electronic Void', 
-    location: 'Teatro Cúpula', 
-    time: '23:00 HRS',
-    image: 'https://images.unsplash.com/photo-1574169208507-84376194878d?q=80&w=1000',
+    title: 'The Match', 
+    location: 'Academia Renacer', 
+    time: '22:00 HRS',
+    image: TheMatchBackground,
     soldOut: false
   },
   { 
     id: 2, 
-    day: '31', 
-    month: 'OCT', 
+    day: '08', 
+    month: 'Febrero', 
     year: '2025',
-    title: 'Halloween Massive', 
-    location: 'Espacio Riesco', 
-    time: '21:00 HRS',
-    image: 'https://images.unsplash.com/photo-1514525253440-b3933325d7ca?q=80&w=1000',
-    soldOut: true 
+    title: 'Techno Sunset vol. 7', 
+    location: 'El Recurso, Buin', 
+    time: '17:00 HRS',
+    image: TechnoSunsetBackground,
+    // Cambiado a false para que puedas probar el botón
+    soldOut: false 
   },
   { 
     id: 3, 
@@ -128,15 +157,24 @@ const events = ref([
   },
 ]);
 
+// LÓGICA DE APERTURA
 const openTicket = (event) => {
-  selectedEvent.value = {
-    title: event.title,
-    date: `${event.day} ${event.month}`,
-    time: event.time,
-    // CAMBIO: SS en lugar de NOX para el ID del ticket
-    id: `SS-${event.year}-${event.id}`,
-    image: event.image
-  };
+  if (event.id === 1) {
+    // Abrir The Match
+    showMatchDetail.value = true;
+  } else if (event.id === 2) {
+    // Abrir Techno Sunset
+    showTechnoDetail.value = true;
+  } else {
+    // Abrir Genérico (Neon Nights u otros futuros)
+    selectedEvent.value = {
+      title: event.title,
+      date: `${event.day} ${event.month}`,
+      time: event.time,
+      id: `SS-${event.year}-${event.id}`,
+      image: event.image
+    };
+  }
 };
 </script>
 

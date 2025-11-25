@@ -7,16 +7,23 @@
       class="transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] origin-top"
       :class="showMatchDetail ? 'scale-95 opacity-30 blur-sm brightness-50 pointer-events-none grayscale' : 'scale-100 opacity-100 blur-0'"
     >
-      <HeroSection id="hero" @openMatchDetails="showMatchDetail = true" />
+      <HeroSection id="hero" @openMatchDetails="showMatchDetail = true" @openTechnoDetails="showTechnoDetail = true" />
       <ServicesSection id="servicios" />
       <EventSection id="eventos" />
       <SessionSection id="estudio" />
     </main>
     
-    <Transition name="premium-slide">
+    <Transition name="fade">
       <TheMatchDetail 
         v-if="showMatchDetail" 
         @close="showMatchDetail = false" 
+      />
+    </Transition>
+
+    <Transition name="fade">
+      <TechnoSunsetDetail 
+        v-if="showTechnoDetail" 
+        @close="showTechnoDetail = false" 
       />
     </Transition>
 
@@ -43,10 +50,12 @@ import AppFooter from './components/footer/AppFooter.vue';
 import Lenis from '@studio-freight/lenis';
 import CustomCursor from './components/cursor/CustomCursor.vue';
 import TheMatchDetail from './components/events/TheMatchDetail.vue';
+import TechnoSunsetDetail from './components/events/TechnoSunsetDetail.vue';
 import AudioFader from './components/sroll-bar/AudioFader.vue';
 
 // --- ESTADO ---
 const showMatchDetail = ref(false);
+const showTechnoDetail = ref(false);
 
 // --- VARIABLES GLOBALES ---
 let observer;
@@ -177,5 +186,15 @@ watch(showMatchDetail, async (isOpen) => {
   transform: translateY(0);
 }
 
+/* Transición Fade Genérica */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
 
 </style>

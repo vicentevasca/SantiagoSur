@@ -194,6 +194,8 @@ const sessions = ref([
   { id: '6F_g_ZIPwqw', title: 'Experimental', subtitle: 'Sound Design' },
 ]);
 
+
+
 const gallery = ref([
   { src: 'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=1200', title: 'Studio A', category: 'Recording' },
   { src: 'https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?q=80&w=800', title: 'Techno', category: 'Live Set' },

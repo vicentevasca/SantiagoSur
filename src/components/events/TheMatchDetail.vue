@@ -205,6 +205,9 @@
 <script setup>
 import { ref } from 'vue';
 import matchBg from '../../assets/img/TheMatch/TheMatchBackground.png';
+import DjPabloBastias from '../../assets/img/artistas/dj/PabloBastias/DjPabloBastias.png';
+import Vassc from '../../assets/img/artistas/dj/Vassc/Vassc.png';
+//import NicoB from '../../assets/img/artistas/dj/NicoB/NicoB.png';
 
 const activeTab = ref('info'); 
 const activeMobileDj = ref(null); // Variable para controlar el click en móvil
@@ -221,16 +224,16 @@ const handleDjClick = (index) => {
 
 const lineUp = ref([
   {
-    name: 'DJ MAURO',
-    genre: 'Ultrabailable',
+    name: 'DJ PABLO BASTÍAS',
+    genre: 'Reguetón',
     time: '23:00 - 01:00',
-    image: 'https://images.unsplash.com/photo-1571266028243-3716f02d2d2e?q=80&w=1200&auto=format&fit=crop' 
+    image: DjPabloBastias 
   },
   {
-    name: 'JAVI M.',
-    genre: 'Reggaeton',
+    name: 'VASSC',
+    genre: 'Ultrabailable',
     time: '01:00 - 03:00',
-    image: 'https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?q=80&w=1200&auto=format&fit=crop'
+    image: Vassc
   },
   {
     name: 'NICO B.',
