@@ -38,6 +38,10 @@
 
       <div class="hidden md:flex items-center gap-12 z-20">
         <ul class="flex gap-12 text-xs font-bold tracking-widest uppercase text-white">
+          <li @click="scrollToSection('live')" class="cursor-pointer flex items-center gap-2 hover:text-white transition-colors text-red-500 font-bold">
+  <span class="w-2 h-2 bg-red-600 rounded-full animate-pulse"></span>
+  LIVE
+</li>
           <li @click="scrollToSection('servicios')" class="cursor-pointer hover:text-neutral-400 transition-colors">Servicios</li>
           <li @click="scrollToSection('eventos')" class="cursor-pointer hover:text-neutral-400 transition-colors">Agenda</li>
           <li @click="scrollToSection('artistas')" class="cursor-pointer hover:text-neutral-400 transition-colors">Residentes</li>
@@ -65,6 +69,7 @@
         </div>
 
         <div class="flex flex-col items-center space-y-6">
+          <a @click="scrollToSection('live')" class="text-2xl font-light uppercase tracking-[0.2em] text-white hover:text-yellow-400 transition-colors cursor-pointer"><span class="w-1 h-1 bg-red-600 rounded-full animate-pulse"></span>LIVE</a>
           <a @click="scrollToSection('servicios')" class="text-2xl font-light uppercase tracking-[0.2em] text-white hover:text-yellow-400 transition-colors cursor-pointer">Servicios</a>
           <a @click="scrollToSection('eventos')" class="text-2xl font-light uppercase tracking-[0.2em] text-white hover:text-yellow-400 transition-colors cursor-pointer">Agenda</a>
           <a @click="scrollToSection('artistas')" class="text-2xl font-light uppercase tracking-[0.2em] text-white hover:text-yellow-400 transition-colors cursor-pointer">Residentes</a>
@@ -116,6 +121,11 @@ const toggleMenu = () => {
 const scrollToSection = async (id) => {
   // 1. Cerrar menú móvil si está abierto
   if(isMenuOpen.value) toggleMenu(); 
+
+  if (id === 'live') {
+    await router.push('/live');
+    return;
+  }
 
   // 2. Caso especial: Ir a la página de artistas
   if (id === 'artistas') {
