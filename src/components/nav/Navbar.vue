@@ -64,12 +64,16 @@
              <div class="w-12 h-12 bg-black rounded-full border border-yellow-500/20"></div>
           </div>
           <div class="absolute z-10 font-extrabold text-6xl text-yellow-500 tracking-tighter drop-shadow-md select-none">
-            <span class="text-black [-webkit-text-stroke:1px_white] md:[-webkit-text-stroke:1px_white]">SS</span>
+            <img 
+      src="../../assets/img/logoSS/SS santiago sur negativo PNG.png" 
+      alt="SS Logo"
+      class="w-[200px] h-[200px] opacity-100 object-contain"
+    />
           </div>
         </div>
 
         <div class="flex flex-col items-center space-y-6">
-          <a @click="scrollToSection('live')" class="text-2xl font-light uppercase tracking-[0.2em] text-white hover:text-yellow-400 transition-colors cursor-pointer"><span class="w-1 h-1 bg-red-600 rounded-full animate-pulse"></span>LIVE</a>
+          <a @click="scrollToSection('live')" class="text-2xl uppercase tracking-[0.2em] text-red-500 font-bold hover:text-yellow-400 transition-colors cursor-pointer">LIVE</a>
           <a @click="scrollToSection('servicios')" class="text-2xl font-light uppercase tracking-[0.2em] text-white hover:text-yellow-400 transition-colors cursor-pointer">Servicios</a>
           <a @click="scrollToSection('eventos')" class="text-2xl font-light uppercase tracking-[0.2em] text-white hover:text-yellow-400 transition-colors cursor-pointer">Agenda</a>
           <a @click="scrollToSection('artistas')" class="text-2xl font-light uppercase tracking-[0.2em] text-white hover:text-yellow-400 transition-colors cursor-pointer">Residentes</a>

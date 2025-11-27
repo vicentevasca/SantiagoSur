@@ -25,7 +25,11 @@
           </div>
           
           <div class="hidden md:block mt-12 text-[12rem] font-bold leading-none text-white/[0.02] select-none -ml-4">
-            SS
+            <img 
+      src="../../assets/img/logoSS/SS santiago sur negativo PNG.png" 
+      alt="SS Logo"
+      class="w-[200px] h-[200px] opacity-50 object-contain"
+    />
           </div>
         </div>
 

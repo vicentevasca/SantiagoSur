@@ -17,17 +17,23 @@
         <span class="text-xl font-bold leading-none md:hidden">✕</span> <span class="hidden md:inline text-4xl group-hover:rotate-90 transition-transform duration-300">×</span> </button>
 
       <div class="w-full h-[60%] md:h-full md:w-1/2 relative overflow-hidden shrink-0">
-        <img 
-          :src="artist.image" 
-          class="w-full h-full object-cover object-top md:object-center transition-transform duration-[10s] ease-linear hover:scale-110"
-          :alt="artist.name"
-        />
-        <div class="absolute inset-0 bg-gradient-to-t from-neutral-900 via-transparent to-transparent md:bg-gradient-to-r"></div>
-        
-        <div class="absolute bottom-2 left-2 md:bottom-8 md:left-8 text-[4rem] md:text-[8rem] font-bold leading-none text-white/5 select-none pointer-events-none">
-          SS
-        </div>
-      </div>
+  <img 
+    :src="artist.image" 
+    class="w-full h-full object-cover object-top md:object-center transition-transform duration-[10s] ease-linear hover:scale-110"
+    :alt="artist.name"
+  />
+  
+  <div class="absolute inset-0 bg-gradient-to-t from-neutral-900 via-transparent to-transparent md:bg-gradient-to-r"></div>
+  
+  <div class="absolute bottom-4 left-4 z-20 pointer-events-none select-none">
+    <img 
+      src="../../assets/img/logoSS/SS santiago sur negativo PNG.png" 
+      alt="SS Logo"
+      class="w-[150px] h-[150px] opacity-50 object-contain"
+    />
+  </div>
+
+</div>
 
       <div class="w-full h-[60%] md:h-full md:w-1/2 overflow-y-auto p-6 md:p-16 flex flex-col md:justify-center bg-neutral-900/50 backdrop-blur-sm relative">
         

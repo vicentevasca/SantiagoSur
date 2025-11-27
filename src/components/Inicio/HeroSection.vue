@@ -39,10 +39,17 @@
       </TransitionGroup>
     </div>
 
-    <div class="relative z-10 text-center px-4 max-w-7xl mx-auto mt-16 w-full">
+    <div class="relative z-1 text-center px-4 max-w-7xl mx-auto mt-16 w-full">
       
       <Transition name="fade-up" mode="out-in">
         <div :key="currentSlide" class="flex flex-col items-center">
+          
+          <img 
+            v-if="slides[currentSlide].logo"
+            :src="slides[currentSlide].logo"
+            alt="SS Logo"
+            class="w-35 h-35 md:w-40 md:h-40 object-contain mb-6 animate-slide-in delay-100 opacity-80"
+          />
           
           <h2 
             class="text-xs md:text-sm font-bold tracking-[0.6em] mb-6 uppercase animate-slide-in"
@@ -106,6 +113,8 @@ import { PlayIcon } from '@heroicons/vue/24/solid';
 import TheMatchBackground from '../../assets/img/TheMatch/TheMatchBackground.png';
 import TechnoSunsetBackground from '../../assets/img/TechnoSunset/TechnoSunsetBackground.png';
 
+import ssLogo from '../../assets/img/logoSS/SS santiago sur negativo PNG.png';
+
 const emit = defineEmits(['openMatchDetails', 'openTechnoDetails']);
 
 // CONFIGURACIÓN DE PARTÍCULAS (Solo para The Match)
@@ -143,6 +152,7 @@ const slides = [
     id: 1,
     isSpecial: false, 
     subtitle: 'Producción & Eventos',
+    logo: ssLogo,
     title: 'Sonido <br /> <span class="text-neutral-500 font-serif italic">Atemporal</span>',
     image: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80',
     ctaPrimary: 'Ver Agenda',
