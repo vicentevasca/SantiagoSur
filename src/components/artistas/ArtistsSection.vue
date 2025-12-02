@@ -97,7 +97,7 @@ const roster = ref([
     name: 'Pablo Bastias',
     style: 'Urbano / Reggaeton',
     image: DjPabloBas,
-    bio: 'Maestro de las atmósferas y los sonidos hipnóticos. Pablo Bastias crea experiencias sonoras que van más allá de la pista de baile, conectando con las emociones más profundas del público.',
+    bio: 'Maestro de las atmósferas y los sonidos hipnóticos. Pablo Bastias crea experiencias sonoras que van más allá de la pista de baile, conectando las emociones más profundas del público.',
     social: {
       instagram: 'https://www.instagram.com/pablo_iignacio/',
     }
