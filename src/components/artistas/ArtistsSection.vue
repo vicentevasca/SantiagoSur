@@ -62,12 +62,12 @@
 <script setup>
 import { ref } from 'vue';
 import ArtistModal from './ArtistModal.vue';
-import Vassc from '../../assets/img/artistas/dj/Vassc/Vassc.jpeg';
+import Vassc from '../../assets/img/artistas/dj/Vassc/vassc.jpeg';
 import Atlass from '../../assets/img/artistas/dj/Atlass/atlass3.jpeg';
 import DjPabloBas from '../../assets/img/artistas/dj/PabloBastias/DjPabloBastias.png';
 import Pvlma from '../../assets/img/artistas/dj/Pvlma/Pvlma1.jpg';
 import noventaX from '../../assets/img/artistas/cantante/90x/90x1.jpg';
-import stressbrain from '../../assets/img/artistas/Productor/stressbrain/stressbrain1.jpg';
+import stressbrain from '../../assets/img/artistas/Productor/stressbrain/stressbrain1.JPG';
 
 // --- DATOS MOCK (Reemplazar con imágenes reales en assets) ---
 // Tip: Usa imágenes verticales de alta calidad
