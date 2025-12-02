@@ -62,85 +62,81 @@
 <script setup>
 import { ref } from 'vue';
 import ArtistModal from './ArtistModal.vue';
+import Vassc from '../../assets/img/artistas/dj/Vassc/Vassc1.jpeg';
+import Atlass from '../../assets/img/artistas/dj/Atlass/atlass3.jpeg';
+import DjPabloBas from '../../assets/img/artistas/dj/PabloBastias/DjPabloBastias.png';
+import Pvlma from '../../assets/img/artistas/dj/Pvlma/Pvlma1.jpg';
+import noventaX from '../../assets/img/artistas/cantante/90x/90x1.jpg';
+import stressbrain from '../../assets/img/artistas/Productor/stressbrain/stressbrain1.jpg';
 
 // --- DATOS MOCK (Reemplazar con imágenes reales en assets) ---
 // Tip: Usa imágenes verticales de alta calidad
 const roster = ref([
   {
     id: 1,
-    name: 'Vromtier',
-    style: 'Hard Techno',
-    image: 'https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?q=80&w=1000',
+    name: 'Atlass',
+    style: 'Techno / Groover',
+    image: Atlass,
     bio: 'DJ y productor chileno conocido por sus sets enérgicos y oscuros. Residente de Santiago Sur, ha compartido escenario con grandes exponentes de la escena local. Su sonido se caracteriza por bajos potentes y melodías industriales.',
     social: {
-      instagram: 'https://instagram.com',
-      soundcloud: 'https://soundcloud.com',
-      spotify: 'https://spotify.com'
+      instagram: 'https://www.instagram.com/vtlass.dj/',
     }
   },
   {
     id: 2,
-    name: 'Jxvi',
-    style: 'Tech House',
-    image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1000',
-    bio: 'Con una propuesta fresca y groovera, Jxvi se ha posicionado como una de las promesas del Tech House en la región. Sus sesiones son un viaje constante de ritmo y baile asegurado.',
+    name: 'Vassc',
+    style: 'Techno / Ultra bailable',
+    image: Vassc,
+    bio: 'Con una propuesta fresca y groovera, Vassc se ha posicionado como una de las promesas del Tech House en la región. Sus sesiones son un viaje constante de ritmo y baile asegurado.',
     social: {
-      instagram: 'https://instagram.com',
-      soundcloud: 'https://soundcloud.com',
-      spotify: 'https://spotify.com',
+      instagram: 'https://www.instagram.com/gonzavasc/',
     }
   },
   {
     id: 3,
-    name: 'Stewarrt',
-    style: 'Minimal / Deep',
-    image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1000',
-    bio: 'Maestro de las atmósferas y los sonidos hipnóticos. Stewarrt crea experiencias sonoras que van más allá de la pista de baile, conectando con las emociones más profundas del público.',
+    name: 'Pablo Bastias',
+    style: 'Urbano / Reggaeton',
+    image: DjPabloBas,
+    bio: 'Maestro de las atmósferas y los sonidos hipnóticos. Pablo Bastias crea experiencias sonoras que van más allá de la pista de baile, conectando con las emociones más profundas del público.',
     social: {
-      instagram: 'https://instagram.com',
-      soundcloud: 'https://soundcloud.com'
+      instagram: 'https://www.instagram.com/pablo_iignacio/',
     }
   },
   {
     id: 4,
-    name: 'Badbast',
-    style: 'Urban / Reggaeton',
-    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000',
-    bio: 'El encargado de prender la fiesta con los hits más duros del género urbano. Badbast es sinónimo de energía, perreo y una conexión única con el público joven.',
+    name: 'Pvlma',
+    style: 'Techno / Industrial',
+    image: Pvlma,
+    bio: 'El encargado de prender la fiesta con los hits más duros del género urbano. Pvlma es sinónimo de energía, perreo y una conexión única con el público joven.',
     social: {
-      instagram: 'https://instagram.com',
-      spotify: 'https://spotify.com',
-      twitter: 'https://x.com'
+      instagram: 'https://www.instagram.com/lil.pvlma/',
     }
   },
   {
     id: 5,
-    name: 'Badbast',
-    style: 'Urban / Reggaeton',
-    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000',
+    name: '90X',
+    style: 'Urbano',
+    image: noventaX,
     bio: 'El encargado de prender la fiesta con los hits más duros del género urbano. Badbast es sinónimo de energía, perreo y una conexión única con el público joven.',
     social: {
-      instagram: 'https://instagram.com',
-      spotify: 'https://spotify.com',
-      twitter: 'https://x.com'
+      instagram: 'https://www.instagram.com/90xaavi/',
+      spotify: 'https://open.spotify.com/intl-es/artist/2lvD8IvA6FCwixqr4LPgQb?si=QI973AVqSCChotJXl4lRZA',
     }
   },
   {
     id: 6,
-    name: 'Badbast',
-    style: 'Urban / Reggaeton',
-    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000',
+    name: 'StressBrain',
+    style: 'Urbano',
+    image: stressbrain,
     bio: 'El encargado de prender la fiesta con los hits más duros del género urbano. Badbast es sinónimo de energía, perreo y una conexión única con el público joven.',
     social: {
-      instagram: 'https://instagram.com',
-      spotify: 'https://spotify.com',
-      twitter: 'https://x.com'
+      instagram: 'https://www.instagram.com/dantecastelli.stressbrain/',
     }
   },
   {
     id: 7,
     name: 'Jxvi',
-    style: 'Tech House',
+    style: 'Techno / Industrial',
     image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1000',
     bio: 'Con una propuesta fresca y groovera, Jxvi se ha posicionado como una de las promesas del Tech House en la región. Sus sesiones son un viaje constante de ritmo y baile asegurado.',
     social: {
