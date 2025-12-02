@@ -62,7 +62,7 @@
 <script setup>
 import { ref } from 'vue';
 import ArtistModal from './ArtistModal.vue';
-import Vassc from '../../assets/img/artistas/dj/Vassc/Vassc1.jpeg';
+import Vassc from '../../assets/img/artistas/dj/Vassc/Vassc.jpeg';
 import Atlass from '../../assets/img/artistas/dj/Atlass/atlass3.jpeg';
 import DjPabloBas from '../../assets/img/artistas/dj/PabloBastias/DjPabloBastias.png';
 import Pvlma from '../../assets/img/artistas/dj/Pvlma/Pvlma1.jpg';
