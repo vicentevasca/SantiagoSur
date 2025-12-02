@@ -64,7 +64,7 @@
                 <div class="flex items-center gap-6 py-2 opacity-80">
       <img src="../../assets/img/marcas/beefeater-logo.avif" class="h-5 lg:h-10 object-contain grayscale hover:grayscale-0 transition-all duration-300" alt="Beefeater">
       <img src="../../assets/img/marcas/alto.png" class="h-10 lg:h-25 object-contain grayscale hover:grayscale-0 transition-all duration-300" alt="Alto del Carmen">
-      <img src="../../assets/img/marcas/jack-daniels-logo.png" class="h-10 lg:h-20 object-contain grayscale hover:grayscale-0 transition-all duration-300" alt="Jack Daniels">
+      <img src="../../assets/img/marcas/Jack-Daniels-Logo.png" class="h-10 lg:h-20 object-contain grayscale hover:grayscale-0 transition-all duration-300" alt="Jack Daniels">
       <img src="../../assets/img/marcas/red-bull-logo-black-and-white.png" class="h-10 lg:h-20 object-contain grayscale hover:grayscale-0 transition-all duration-300" alt="Red Bull">
     </div>
 
